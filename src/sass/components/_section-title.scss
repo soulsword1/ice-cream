@@ -1,0 +1,14 @@
+.section-title {
+  font-family: 'Seymour One', sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  @include font(400, 30px, calc(38 / 30), 0.04em);
+
+  @include tablet {
+    @include font(400, 34px, calc(43 / 34), 0.06em);
+  }
+
+  @include desktop {
+    @include font(400, 36px, calc(45 / 36), 0.06em);
+  }
+}
