@@ -1,6 +1,6 @@
 .section-title {
   font-family: 'Seymour One', sans-serif;
-  text-align: center;
+  // text-align: center;
   text-transform: uppercase;
   @include font(400, 30px, calc(38 / 30), 0.04em);
 
@@ -12,3 +12,4 @@
     @include font(400, 36px, calc(45 / 36), 0.06em);
   }
 }
+

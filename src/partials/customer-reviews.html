@@ -1,1 +1,116 @@
-<section></section>
+<!-- Slider main container -->
+<section class="customer">
+  <div class="container customer__container">
+    <h2 class="hidden">Customer reviews</h2>
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" role="group" aria-label="1 / 3">
+          <div class="customer-reviews__container">
+            <picture class="picture">
+              <source
+                srcset="
+                  ./images/customer/slider-photo-1.webp    1x,
+                  ./images/customer/slider-photo-1@2x.webp 2x
+                "
+                type="image/webp"
+                media="(min-width: 1200px)"
+              />
+              <source
+                srcset="
+                  ./images/customer/slider-photo-1.jpg    1x,
+                  ./images/customer/slider-photo-1@2x.jpg 2x
+                "
+                type="image/webp"
+                media="(min-width: 1200px)"
+              />
+              <img
+                class="customer-reviews__image"
+                src="./images/customer/slider-photo-1.jpg"
+                alt="Customer"
+              />
+            </picture>
+            <p class="customer-reviews__text">
+              I love visiting your cafe. You prepare the most delicious ice
+              cream in Los Angeles! In addition, you have beautiful serving,
+              cozy atmosphere and polite staff.
+            </p>
+            <p class="customer-reviews__name">Emily, Los Angeles</p>
+          </div>
+        </div>
+        <div class="swiper-slide" role="group" aria-label="2 / 3">
+          <div class="customer-reviews__container">
+            <picture class="picture">
+              <source
+                srcset="
+                  ./images/customer/slider-photo-2.webp    1x,
+                  ./images/customer/slider-photo-2@2x.webp 2x
+                "
+                type="image/webp"
+                media="(min-width: 1200px)"
+              />
+              <source
+                srcset="
+                  ./images/customer/slider-photo-2.jpg    1x,
+                  ./images/customer/slider-photo-2@2x.jpg 2x
+                "
+                type="image/webp"
+                media="(min-width: 1200px)"
+              />
+
+              <img
+                class="customer-reviews__image"
+                src="./images/customer/slider-photo-2.jpg"
+                alt="Customer"
+              />
+            </picture>
+            <p class="customer-reviews__text">
+              Every day we come to you with friends after classes in college. We
+              love your ice cream and casual atmosphere!
+            </p>
+            <p class="customer-reviews__name">Bryan, New-York</p>
+          </div>
+        </div>
+        <div class="swiper-slide" role="group" aria-label="3 / 3">
+          <div class="customer-reviews__container">
+            <picture class="picture">
+              <source
+                srcset="
+                  ./images/customer/slider-photo-3.webp    1x,
+                  ./images/customer/slider-photo-3@2x.webp 2x
+                "
+                type="image/webp"
+                media="(min-width: 1200px)"
+              />
+              <source
+                srcset="
+                  ./images/customer/slider-photo-3.jpg    1x,
+                  ./images/customer/slider-photo-3@2x.jpg 2x
+                "
+                type="image/webp"
+                media="(min-width: 1200px)"
+              />
+
+              <img
+                class="customer-reviews__image"
+                src="./images/customer/slider-photo-3.jpg"
+                alt="Customer"
+              />
+            </picture>
+            <p class="customer-reviews__text">
+              Ice cream is my passion! I love your chocolate hazelnut ice cream!
+              And I really like the excellent service - always served politely
+              and quickly!
+            </p>
+            <p class="customer-reviews__name">Diana, Chicago</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="swiper-pagination">
+        <span class="swiper-pagination-bullet"></span
+        ><span class="swiper-pagination-bullet"></span
+        ><span class="swiper-pagination-bullet"></span>
+      </div>
+    </div>
+  </div>
+</section>

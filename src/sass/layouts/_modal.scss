@@ -11,8 +11,8 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 20;
-  transition: 0.3s all;
+  z-index: 101;
+  transition: opacity 500ms cubic-bezier(0.4, 0, 0.2, 1), visibility 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Стили для модальных окон */
@@ -22,16 +22,12 @@
   opacity: 0;
   visibility: hidden;
 
-  /*  Установаем ширину окна  */
-  width: 100%;
-  max-width: 500px;
-
-  /*  Центрируем и задаем z-index */
+   /*  Центрируем и задаем z-index */
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 30;
+  transform: translate(-50%, -50%) scale(0.5) rotate(180deg);
+  z-index: 120;
   /* Должен быть выше чем у подложки*/
 
   /*  Побочные стили   */
@@ -40,7 +36,8 @@
   padding: 30px;
   border-radius: 3px;
   background-color: #fff;
-  transition: 0.3s all;
+
+  transition: 500ms all;
 }
 
 /* Стили для активных классов подложки и окна */
@@ -48,28 +45,599 @@
 .modal.active,
 .overlay.active {
   opacity: 1;
-  visibility: visible;
+  visibility: visible; 
+  
+}
+.modal.active {
+  transform: translate(-50%, -50%) scale(1) rotate(0deg);
 }
 
-/* Стили для кнопки закрытия */
+/*загальні стилі */
 
-.modal__cross {
-  width: 15px;
-  height: 15px;
+.modal-container {
+  width: 280px;
+  max-width: 100%;
+  max-height: 100%;
+  padding: 28px;
+  border-radius: 10px;
+  border: 2px solid #F8D24E;
+  background-color: var(--color-white-main);
+
+  @include tablet {
+    width: 568px;
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+}
+
+.modal-title {
+  margin-bottom: 20px;
+  font-family: 'Seymour One';
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--color-black-main);
+
+  @include tablet {
+    margin-bottom: 32px;
+    font-size: 20px;
+    line-height: 1.4;
+  }
+}
+
+.button-close {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  fill: #444;
-  cursor: pointer;
+  top: 12px;
+  right: 12px;
+  width: 20px;
+  height: 20px;  
+  background-color: transparent;
+  border: none;
+  display: flex;
+  padding: 0;
+  align-items: center;
+  justify-content: center;
+
+  @include tablet {
+      width: 24px;
+      height: 24px;
+    }
 }
 
-/* Стили для кнопок. Мы ведь порядочные разработчики, негоже простые ссылки оставлять */
+.modal-icon {
+    width: 100%;
+    height: 100%;
+    fill: var(--color-black-main);
+  }
 
-.js-open-modal {
-  padding: 20px;
-  display: inline-block;
-  text-decoration: none;
-  background-color: #041186;
-  color: rgb(216, 234, 9);
-  border-radius: 3px;
+.modal-form-input {
+  height: 32px;
+  width: 100%;
+  border: 1px solid #84A178;
+  border-radius: 10px;
+  background-color: rgba(248, 210, 78, 0.1);
+  margin-bottom: 12px;
+  padding-left: 12px;
+  outline: transparent;
+
+  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:focus {
+    border: 2px solid #84A178;
+
+  }
+
+  @include tablet {
+    width: 368px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 16px;
+  }
+}
+
+.modal-form-input::placeholder,
+.coment-input::placeholder {
+  font-family: 'Montserrat';
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--color-black-main);
+}
+
+.modal-form-input:not(:focus):not(:placeholder-shown):valid {
+  background-color: rgba(156, 190, 143, 0.3);
+}
+
+
+.modal-form-input:not(:focus):not(:placeholder-shown):invalid {
+  background-color: rgba(128, 36, 0, 0.258 );
+}
+
+.coment-input {
+  width: 100%;
+  height: 65px;
+  border: 1px solid #84A178;
+  border-radius: 10px;
+  background-color: rgba(248, 210, 78, 0.1);
+  padding: 8px 12px;
+  margin-bottom: 24px;
+  resize: none;
+  outline: transparent;
+
+  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:focus {
+      border: 2px solid #84A178;
+  }
+
+  @include tablet {
+      width: 368px;
+      height: 84px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 32px;
+    }
+}
+
+.modal-form-btn {
+  display: block;
+  height: 42px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 12px 34px;
+  border-radius: 10px;
+  border: transparent;
+  background-color: var(--color-yellow);
+  font-family: 'Montserrat';
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1.25;
+  color: var(--color-black-main);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+    background-color: var(--btn-hover-focus);
+  }
+  
+    &:focus {
+      color: var(--color-white-main);
+    }
+
+}
+
+/*buy-now */
+@include  max-mobile {
+  .modal-buy-now {
+     height: 675px;
+     overflow-y: scroll;     
+      }
+}
+
+.buy-now-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 82px;
+  justify-content: center;
+  margin-bottom: 32px;
+
+  @include tablet {
+    flex-wrap: nowrap;
+    gap: 32px;
+    margin-bottom: 40px;
+  }
+}
+
+.buy-now-item {
+  position: relative;
+}
+
+.modal-buy-now .modal-title {
+  margin-bottom: 83px;
+  @include tablet {
+    margin-bottom: 103px;
+  }
+}
+
+.buy-now-element {
+  position: relative;
+  display: flex;
+  width: 132px;
+  height: 136px;
+  padding-bottom: 20px;
+  justify-content: center;
+  align-items: flex-end;
+  border-radius: 10px;
+  font-family: 'Montserrat';
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  
+}
+
+.ice-cream-element {
+  border: 2px solid #96AF8C;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ice-coffee-element {
+  border: 2px solid #EFD478;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.milkshake-element {
+  border: 2px solid #D6936D;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-foto-container {
+  position: absolute;
+  top: -59px;
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+  z-index: 20;
+}
+.ice-cream-foto {
+  background-image: linear-gradient(0deg, rgba(156, 190, 143, 0.7), rgba(156, 190, 143, 0.7));
+  box-shadow: 0px 5.26027px 19.726px rgba(10, 136, 23, 0.25);
+}
+
+.ice-coffee-foto {
+  background-image: linear-gradient(0deg, rgba(248, 210, 78, 0.7), rgba(248, 210, 78, 0.7));
+  box-shadow: 0px 5.26027px 19.726px rgba(153, 114, 23, 0.25);
+}
+
+.milkshake-foto {
+  background-image: linear-gradient(rgba(213, 117, 63, 0.7), rgba(213, 117, 63, 0.7));
+  box-shadow: 0px 5.26027px 19.726px rgba(0, 0, 0, 0.25);
+}
+
+.buy-now-foto {
+  position: absolute;
+  bottom: 7px;
+  left: 0;
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.ice-cream:checked+.ice-cream-element {
+  background-color: #96AF8C;
+}
+
+.ice-coffee:checked+.ice-coffee-element {
+  background-color: #EFD478;
+}
+
+.milkshake:checked+.milkshake-element {
+  background-color: #D6936D;;
+}
+
+/*product*/
+.modal-product {
+  height: 675px;
+  overflow-y: scroll;
+  & img {
+    height: 100%;
+  }
+
+  @include tablet {
+    height: 630px;
+  }
+}
+
+@include tablet {
+  .modal-product {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+   
+}
+
+@include max-mobile {
+.modal-product .modal-title {
+  display: block;
+  width: 142px;
+  margin-left: auto;
+  margin-right: auto; 
+  margin-bottom: 27px;
+   }
+}
+
+@include tablet {
+.modal-product .modal-title {
+  margin-bottom: 32px;
+   }
+}
+
+.product-foto {
+  position: absolute;
+  top: -7px;
+  display: block;
+  width: 132px;
+  height: 132px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
+  overflow: hidden;
+  }
+
+.product-foto-container {
+  position: relative;
+  width: 132px;
+  height: 132px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 22px;
+  border-radius: 50%;
+  background-image: linear-gradient(0deg, rgba(156, 190, 143, 0.7), rgba(156, 190, 143, 0.7));
+  box-shadow: 0px 5.26027px 19.726px rgba(10, 136, 23, 0.25);
+
+  &.orang-coffee {
+    background-image: linear-gradient(0deg, rgba(248, 210, 78, 0.7), rgba(248, 210, 78, 0.7));
+    box-shadow: 0px 5.26027px 19.726px rgba(153, 114, 23, 0.25);
+
+  }
+
+  &.milkshake-oreo {    
+    background-image: linear-gradient(rgba(213, 117, 63, 0.7), rgba(213, 117, 63, 0.7));
+    box-shadow: 0px 5.26027px 19.726px rgba(0, 0, 0, 0.25);
+    
+  }
+
+  @include tablet {
+    margin-bottom: 24px;
+  }
+}
+
+.list-value {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 39px;
+
+  @include tablet {
+    gap:20px;
+    justify-content: center;
+    margin-bottom: 48px;
+  }
+}
+
+.value-item {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 8px;
+  width: 53px;
+  height: 72px;
+  border: 2px solid #9CBE8F;
+  border-radius: 40px;
+  font-family: 'Montserrat';
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 1.2;
+
+  &.orang-coffee {
+      border: 2px solid #EFD478;
+    }
+
+  &.milkshake-oreo {
+    border: 2px solid #D6936D;
+  }
+
+  @include tablet {
+    width: 65px;
+    height: 90px;
+    padding-bottom: 14px;
+    font-size: 12px;
+    line-height: 1.25;
+  }
+}
+
+.value-element {
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  width: 43px;
+  height: 43px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 2px solid #9CBE8F;
+  box-shadow: 0px 6px 20px rgba(10, 136, 23, 0.25);
+  background-color: #9CBE8F;
+  font-family: 'Montserrat';
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 2.8;
+  color: var(--color-black-main);
+
+  &.orang-coffee {
+    border: 2px solid #EFD478;
+    background-color: #EFD478;
+    box-shadow: 0px 5.26027px 19.726px rgba(153, 114, 23, 0.25);
+  }
+
+  &.milkshake-oreo {
+    border: 2px solid #D6936D;
+    background-color: #D6936D;
+    box-shadow: 0px 5.26027px 19.726px rgba(0, 0, 0, 0.25);
+
+  }
+  
+  @include tablet {
+    width: 53px;
+    height: 53px;
+    font-size: 12px;
+    line-height: 1.25;
+  }
+}
+
+.modal-uptitle {
+  margin-bottom: 24px;
+  font-family: 'Montserrat';
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.4;
+  text-align: center;
+  color: var(--color-black-main);
+}
+
+.list-ingr-item {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.76;
+  letter-spacing: 0.04em;
+
+  &:not(:last-child){
+    margin-bottom: 11px;
+  }
+}
+
+.list-ingridient {
+  margin-bottom: 40px;
+
+  @include tablet {
+    margin-bottom: 48px;
+  }
+}
+
+
+/*відео */
+
+@include tablet {
+  .modal-video {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}
+
+.video {
+  width: 224px;
+  height: 199px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border: none;
+
+  @include tablet {
+    width: 448px;
+    height: 205px;
+    margin-bottom: 32px;
+  }
+}
+
+.modal-text {
+  font-family: 'Montserrat';
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--color-black-main);
+
+  @include tablet {
+    font-size: 16px;
+    line-height: 1.4;
+  }
+}
+
+
+
+/*локація */
+
+.location-foto {
+  max-width: 224px;
+  max-height: 199px;
+  border-radius: 10px;
+
+  @include tablet {
+      max-width: 448px;
+      max-height: 260px;
+    }
+}
+
+@include tablet {
+  .location-foto {
+    width: 448px;
+    height: 260px;
+  }
+  .modal-location {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}
+
+
+.location-link {
+  display: block;
+  width: 134px;
+  height: 42px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 12px 34px;
+  border-radius: 10px;
+  border: transparent;
+  background-color: var(--color-yellow);
+  font-family: 'Montserrat';
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 1.25;
+  color: var(--color-black-main);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover,
+  &:focus {
+      background-color: var(--btn-hover-focus);
+    }
+  
+    &:focus {
+      color: var(--color-white-main);
+    }
+
+  @include tablet {
+    margin-top: 32px;
+  }
+}
+
+/*франчайзинг */
+@include max-mobile {
+  .modal-franchise {
+    height: 675px;
+    overflow-y: scroll;
+  }
+}
+
+
+.modal-franchise .modal-text {
+  margin-bottom: 20px;
+
+  @include tablet {
+    margin-bottom: 32px;
+  }
+}
+
+@include tablet {
+  .modal-franchise {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}
+
+.modal-hero {
+  width: 350px;
+  margin-left: auto;
+  margin-right: auto;
 }

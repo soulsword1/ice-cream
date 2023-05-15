@@ -1,1 +1,128 @@
-<header></header>
+<header class="header" id="home">
+  <div class="container header-container">
+    <a class="logo-menu" href="./index.html">
+      <picture>
+        <source
+          srcset="
+            ./images/logo/logo-desk-min.png    1x,
+            ./images/logo/logo-desk-2x-min.png 2x
+          "
+          media="(min-width: 1200px)"
+          type="image/png"
+          width="60"
+        />
+        <source
+          srcset="
+            ./images/logo/logo-tab-min.png    1x,
+            ./images/logo/logo-tab-2x-min.png 2x
+          "
+          media="(min-width: 768px)"
+          type="image/png"
+          width="48"
+        />
+        <source
+          srcset="
+            ./images/logo/logo-mob-min.png  1x,
+            images/logo/logo-mob-2x-min.png 2x
+          "
+          media="(max-width: 767px)"
+          type="image/png"
+          width="40"
+        />
+        <img src="./images/logo/logo-mob-min.png" alt="logo" />
+      </picture>
+    </a>
+
+    <button
+      type="button"
+      class="menu-open js-open-menu"
+      aria-label="Open mobile menu"
+    >
+      <svg class="menu-icon" width="32" height="32">
+        <use href="./images/icons.svg#icon-menu"></use>
+      </svg>
+    </button>
+    <div class="mob-menu js-menu-container">
+      <a class="logo" href="./index.html">
+        <picture>
+          <source
+            srcset="
+              ./images/logo/logo-tab-min.png    1x,
+              ./images/logo/logo-tab-2x-min.png 2x
+            "
+            media="(min-width: 768px)"
+            type="image/png"
+            width="48"
+          />
+          <source
+            srcset="
+              ./images/logo/logo-mob-min.png  1x,
+              images/logo/logo-mob-2x-min.png 2x
+            "
+            media="(max-width: 767px)"
+            type="image/png"
+            width="40"
+          />
+          <img src="./images/logo/logo-mob-min.png" alt="logo" />
+        </picture>
+      </a>
+
+      <button
+        type="button"
+        class="menu-close js-close-menu"
+        aria-label="Close mobile menu"
+      >
+        <svg class="menu-icon" width="32" height="32">
+          <use href="./images/icons.svg#icon-cross"></use>
+        </svg>
+      </button>
+
+      <nav class="nav-menu">
+        <ul class="menu-list js-list-menu">
+          <li class="menu-item">
+            <a href="#home" class="menu-link">Home</a>
+          </li>
+          <li class="menu-item">
+            <a href="#about" class="menu-link"> How it’s made?</a>
+          </li>
+          <li class="menu-item">
+            <a href="#products" class="menu-link">Our products</a>
+          </li>
+          <li class="menu-item">
+            <a href="#contacts" class="menu-link">Contact</a>
+          </li>
+        </ul>
+      </nav>
+
+      <button type="button" class="button-now js-open-modal" data-modal="1">
+        Buy now
+        <svg class="button-icon" width="12" height="12">
+          <use href="./images/icons.svg#icon-arrow-button"></use>
+        </svg>
+      </button>
+    </div>
+
+    <nav class="header-nav">
+      <ul class="header-list">
+        <li class="header-item">
+          <a href="#home" class="header-link">Home</a>
+        </li>
+        <li class="header-item">
+          <a href="#about" class="header-link">How it’s made?</a>
+        </li>
+        <li class="header-item">
+          <a href="#products" class="header-link">Our products</a>
+        </li>
+        <li class="header-item">
+          <a href="#contacts" class="header-link">Contact</a>
+        </li>
+      </ul>
+    </nav>
+    <button type="button" class="button-buy-now js-open-modal" data-modal="1">
+      Buy now
+      <svg class="button-icon" width="12" height="12">
+        <use href="./images/icons.svg#icon-arrow-button"></use>
+      </svg>
+    </button>
+  </div>
+</header>

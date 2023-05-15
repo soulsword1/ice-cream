@@ -1,18 +1,40 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ice cream</title>
+    <meta
+      name="description"
+      content="Homemade ice cream, ice coffee, milkshakes, made with passion using 100% natural products and traditional recipes"
+    />
+    <meta property="og:title" content="Ice cream" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://dutchakyuliia.github.io/alpha-team__ice-cream/"
+    />
+    <meta name="author" content="Alpha team" />
+    <meta
+      property="og:image"
+      content="https://images.pickapic.live/get/02e7eedb-7850-4253-21b4-9447d9c10a0f-1672237495.jpeg"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" href="./images/logo/logo-mob-min.png" type="image/png" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Montserrat:wght@400;500;600;700;800;900&family=Seymour+One&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./sass/index.scss" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+    />
     <script type="module" src="./index.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./sass/index.scss" />
   </head>
+
   <body>
     <include src="./partials/header.html"></include>
     <main>
@@ -26,5 +48,13 @@
     </main>
     <include src="./partials/footer.html"></include>
     <include src="./partials/modals.html"></include>
+    <include src="./partials/buttonup.html"></include>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script type="module" src="./index.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
   </body>
 </html>
