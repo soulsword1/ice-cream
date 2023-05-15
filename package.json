@@ -1,21 +1,21 @@
 {
-  "name": "ice-cream-project",
+  "name": "ice-cream",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://soulsword1.github.io/ice-cream-project",
+  "homepage": "https://soulsword1.github.io/ice-cream",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /ice-cream-project/"
+    "build": "parcel build src/*.html --public-url /ice-cream/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/soulsword1/ice-cream-project.git"
+    "url": "git+https://github.com/soulsword1/ice-cream.git"
   },
   "keywords": [],
   "author": "Max RPieshkovepeta <max.pieshkov1@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/soulsword1/ice-cream-project/issues"
+    "url": "https://github.com/soulsword1/ice-cream/issues"
   },
   "dependencies": {
     "modern-normalize": "^1.1.0"
